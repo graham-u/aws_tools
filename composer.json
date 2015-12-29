@@ -1,0 +1,13 @@
+{
+    "name": "grahamu/aws_tools",
+    "description": "Command line helpers for AWS admin",
+    "require": {
+        "symfony/console": "^3.0"
+    },
+    "authors": [
+        {
+            "name": "Graham",
+            "email": "grahamu@gmail.com"
+        }
+    ]
+}
