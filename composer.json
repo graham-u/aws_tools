@@ -2,7 +2,8 @@
     "name": "grahamu/aws_tools",
     "description": "Command line helpers for AWS admin",
     "require": {
-        "symfony/console": "^3.0"
+        "symfony/console": "^3.0",
+        "barnybug/cli53": "0.7.0"
     },
     "authors": [
         {
@@ -12,6 +13,25 @@
     ],
     "autoload": {
         "psr-4": { "": "src/" }
-    }
+    },
 
+    "scripts": {
+      "post-install-cmd": "chmod +x vendor/barnybug/cli53/cli53-linux-amd64",
+      "post-update-cmd": "chmod +x vendor/barnybug/cli53/cli53-linux-amd64"
+    },
+
+    "repositories": [
+      {
+        "type": "package",
+        "package": {
+          "name": "barnybug/cli53",
+          "version": "0.7.0",
+          "dist": {
+            "url": "https://github.com/barnybug/cli53/releases/download/0.7.0/cli53-linux-amd64",
+            "type": "file",
+            "reference": "0.7.0"
+          }
+        }
+      }
+    ]
 }
