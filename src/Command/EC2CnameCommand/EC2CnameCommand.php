@@ -17,11 +17,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 class EC2CnameCommand extends Command
 {
     private $conf;
+    private $cli53;
 
     public function __construct()
     {
         $this->conf = parse_ini_file("config.ini");
+        $this->cli53 = $path_current = dirname( __FILE__ ) . '/../../../vendor/barnybug/cli53/cli53-linux-amd64';
+
         parent::__construct();
+
+
+
     }
 
     /**
@@ -50,6 +56,7 @@ class EC2CnameCommand extends Command
         $conf = $this->conf;
         $zone = $conf['zone'];
         $ttl = $conf['ttl'];
+        $cli53 = $this->cli53;
 
         $tagValue = $input->getArgument('Subdomain tag value');
 
@@ -64,7 +71,7 @@ class EC2CnameCommand extends Command
         }
 
         // Create the CNAME record
-        $command = "cli53 rc $zone '$tagValue $ttl CNAME $publicDnsName' --replace";
+        $command = "$cli53 rc $zone '$tagValue $ttl CNAME $publicDnsName' --replace";
         $output->writeln("<info>Running:</info>$command");
         exec($command, $cmdOutput, $returnVar);
         foreach ($cmdOutput as $cmd_output_line) {
